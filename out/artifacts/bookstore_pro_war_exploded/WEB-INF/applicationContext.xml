@@ -16,6 +16,7 @@
     <content:component-scan base-package="com.chen.service"></content:component-scan>
     <content:component-scan base-package="com.chen.entiy"></content:component-scan>
     <content:component-scan base-package="com.config.spring"></content:component-scan>
+    <content:component-scan base-package="com.chen.tool"></content:component-scan>
     <mvc:annotation-driven/>
     <content:annotation-config></content:annotation-config>
 

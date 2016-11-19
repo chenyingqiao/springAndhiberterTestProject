@@ -11,7 +11,7 @@ public class BookBooksEntity {
     private int id;
     private String name;
     private String face;
-    private int price;
+    private Float price;
     private int number;
     private int buyNumber;
     private int type;
@@ -48,11 +48,11 @@ public class BookBooksEntity {
 
     @Basic
     @Column(name = "price")
-    public int getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -109,7 +109,7 @@ public class BookBooksEntity {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (face != null ? face.hashCode() : 0);
-        result = 31 * result + price;
+        result = 31 * result + (price != null ? price.hashCode() : 0);;
         result = 31 * result + number;
         result = 31 * result + buyNumber;
         result = 31 * result + type;

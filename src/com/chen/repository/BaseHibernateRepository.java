@@ -2,6 +2,8 @@ package com.chen.repository;
 
 import com.chen.repository.IRep.IBaseRepostitory;
 import com.chen.repository.IRep.IRepostitoryPage;
+import com.chen.service.ISer.IPageInfo;
+import com.chen.tool.Page;
 import com.sun.istack.internal.Nullable;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -9,6 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -22,7 +26,7 @@ import java.io.Serializable;
  */
 @Repository
 @Transactional(rollbackFor = Exception.class)
-public abstract class BaseHibernateRepository<T> extends HibernateDaoSupport implements IBaseRepostitory<T>,IRepostitoryPage {
+public abstract class BaseHibernateRepository<T> extends HibernateDaoSupport implements IBaseRepostitory<T>,IRepostitoryPage,IPageInfo {
 
     @Autowired
     public void setSessionFactoryNow(SessionFactory sessionFactory){
@@ -65,11 +69,11 @@ public abstract class BaseHibernateRepository<T> extends HibernateDaoSupport imp
     }
 
     @Override
-    public T getOne(Class<T> bookTypeEntityClass, @Nullable Serializable primaryKey) {
+    public T getOne(Class classs, @Nullable Serializable primaryKey) {
         if(primaryKey==null){
             return null;
         }
-        return this.getHibernateTemplate().get(bookTypeEntityClass,primaryKey);
+        return (T)this.getHibernateTemplate().get(classs,primaryKey);
     }
 
     /**
@@ -78,17 +82,37 @@ public abstract class BaseHibernateRepository<T> extends HibernateDaoSupport imp
      * @param classs
      * @param page
      */
+    private Long pageCount,rowCount;
     @Override
-    public Long P(Criteria c, Class classs, int page) {
-        int pageSize=10;
+    public void P(Criteria c, Class classs, int page, @Nullable SimpleExpression[] simpleExpressions) {
+        int pageSize= Page.pageSize;
 
         Criteria criteria = this.getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(classs);
+        if(simpleExpressions!=null){
+            for (SimpleExpression rest:simpleExpressions){
+                criteria.add(rest);
+            }
+        }
         criteria.setProjection(Projections.rowCount());
         Long count=(Long) criteria.uniqueResult();//获取总行数
-        Long pageCount=count/pageSize;
+        rowCount=count;
+        Long pageCount=count/pageSize+1;
+        this.pageCount=pageCount;
 
-        c.setFirstResult((page-1)*pageSize+1);
+
+        c.setFirstResult((page-1)*pageSize);
         c.setMaxResults(pageSize);
-        return count;
+    }
+
+
+    @Override
+    public Long getCountPage() {
+        return this.pageCount;
+
+    }
+
+    @Override
+    public Long getRowCount() {
+        return this.rowCount;
     }
 }

@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <ul class="pagination">
-    <c:forEach var="item" items="${page.list}" varStatus="status">
+    <c:forEach var="item" items="${page.list}">
         <li class=""><a href="${item.url}" class>${item.pageNum}</a></li>
     </c:forEach>
 </ul>

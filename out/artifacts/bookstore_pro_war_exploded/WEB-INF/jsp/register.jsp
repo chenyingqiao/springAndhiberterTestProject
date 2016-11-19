@@ -36,21 +36,21 @@
             <form action="/home/registerPost" method="POST"  role="form">
                 <div class="form-group">
                     <label for="">用户名</label>
-                    <input type="text" name="username" class="form-control" id="" placeholder="请输入">
+                    <input type="text" name="username" class="form-control" id="" placeholder="请输入" required="required">
                 </div>
                 <div class="form-group">
                     <label for="">密码</label>
-                    <input type="password" name="password" class="form-control" id="password1" placeholder="请输入">
+                    <input type="password" name="password" class="form-control" id="password1" placeholder="请输入" required="required">
                 </div>
                 <div class="form-group">
                     <label for="">密码</label>
-                    <input type="password" name="password2" class="form-control" id="password2" placeholder="请输入">
+                    <input type="password" name="password2" class="form-control" id="password2" placeholder="请输入" required="required">
                 </div>
                 <dvi class="form-group">
                     <label for="" class="">选择性别</label>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="1" name="sex">
+                            <input type="checkbox" value="1" name="sex" >
                             男
                         </label>
                         <label>

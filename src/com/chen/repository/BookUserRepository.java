@@ -1,6 +1,7 @@
 package com.chen.repository;
 
 import com.chen.entiy.BookUserEntity;
+import com.chen.repository.IRep.IUserPrepository;
 import com.chen.service.ISer.IUserService;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by chen on 16-11-14.
  */
 @Repository
-public class BookUserRepository extends BaseHibernateRepository<BookUserEntity> implements IUserService {
+public class BookUserRepository extends BaseHibernateRepository<BookUserEntity> implements IUserPrepository<BookUserEntity> {
 
     BookUserEntity bookUserEntity;
 
@@ -52,7 +53,16 @@ public class BookUserRepository extends BaseHibernateRepository<BookUserEntity> 
 
     @Override
     public BookUserEntity getUserInfo(String username) {
-        return null;
+        return this.getHibernateTemplate().execute(new HibernateCallback<BookUserEntity>() {
+            @Override
+            public BookUserEntity doInHibernate(Session session) throws HibernateException {
+                List bookUser = session.createCriteria(BookUserEntity.class).add(Restrictions.eq("username", username)).list();
+                if(bookUser.size()>0){
+                    return (BookUserEntity) bookUser.get(0);
+                }
+                return null;
+            }
+        });
     }
 
     @Override

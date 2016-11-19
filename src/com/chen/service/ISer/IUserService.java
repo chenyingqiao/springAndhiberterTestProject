@@ -1,6 +1,7 @@
 package com.chen.service.ISer;
 
 import com.chen.entiy.BookUserEntity;
+import org.springframework.ui.Model;
 
 /**
  * Created by chen on 16-11-14.
@@ -12,7 +13,6 @@ public interface IUserService {
      * @return
      */
     boolean loginCheck(BookUserEntity bookUserEntity);
-
     /**
      * 获取用户信息
      * @param username
@@ -33,4 +33,16 @@ public interface IUserService {
      * @param bookUserEntity
      */
     void updataUserInfo(BookUserEntity bookUserEntity);
+
+    /**
+     * 用户注册
+     * @param bookUserEntity
+     */
+    void registerUser(BookUserEntity bookUserEntity);
+
+    void ShopCatData(Model model);
+
+    void ShopCatAdd(String bookid);
+
+    float ShopCatClearing();
 }

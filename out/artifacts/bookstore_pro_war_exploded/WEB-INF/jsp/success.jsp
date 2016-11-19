@@ -31,7 +31,7 @@
     window.onload=function(){
         setTimeout(function(){
             window.location.href="${url}";
-        },3000);
+        },500);
     }
 </script>
 </body>

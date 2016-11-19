@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "book_type", schema = "book_store", catalog = "")
 public class BookTypeEntity {
     private int id;
-    private Integer name;
+    private String name;
 
     @Id
     @Column(name = "id")
@@ -23,11 +23,11 @@ public class BookTypeEntity {
 
     @Basic
     @Column(name = "name")
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 

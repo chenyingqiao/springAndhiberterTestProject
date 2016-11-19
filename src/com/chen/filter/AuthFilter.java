@@ -60,7 +60,9 @@ public class AuthFilter extends OncePerRequestFilter{
                 "home/login",
                 "home/index",
                 "home/register",
-                "index.jsp"
+                "index.html",
+                "css/",
+                "js/"
         };
         if(servletPath=="/") return true;
         for (String p:path){
