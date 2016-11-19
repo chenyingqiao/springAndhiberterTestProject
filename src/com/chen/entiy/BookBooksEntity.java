@@ -3,7 +3,7 @@ package com.chen.entiy;
 import javax.persistence.*;
 
 /**
- * Created by chen on 16-11-11.
+ * Created by chen on 16-11-16.
  */
 @Entity
 @Table(name = "book_books", schema = "book_store", catalog = "")
@@ -14,6 +14,7 @@ public class BookBooksEntity {
     private int price;
     private int number;
     private int buyNumber;
+    private int type;
 
     @Id
     @Column(name = "id")
@@ -75,6 +76,16 @@ public class BookBooksEntity {
         this.buyNumber = buyNumber;
     }
 
+    @Basic
+    @Column(name = "type")
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,6 +97,7 @@ public class BookBooksEntity {
         if (price != that.price) return false;
         if (number != that.number) return false;
         if (buyNumber != that.buyNumber) return false;
+        if (type != that.type) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (face != null ? !face.equals(that.face) : that.face != null) return false;
 
@@ -100,6 +112,7 @@ public class BookBooksEntity {
         result = 31 * result + price;
         result = 31 * result + number;
         result = 31 * result + buyNumber;
+        result = 31 * result + type;
         return result;
     }
 }

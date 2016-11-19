@@ -3,13 +3,13 @@ package com.chen.entiy;
 import javax.persistence.*;
 
 /**
- * Created by chen on 16-11-11.
+ * Created by chen on 16-11-16.
  */
 @Entity
 @Table(name = "book_type", schema = "book_store", catalog = "")
 public class BookTypeEntity {
     private int id;
-    private String name;
+    private Integer name;
 
     @Id
     @Column(name = "id")
@@ -23,11 +23,11 @@ public class BookTypeEntity {
 
     @Basic
     @Column(name = "name")
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 

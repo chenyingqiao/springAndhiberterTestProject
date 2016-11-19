@@ -3,7 +3,7 @@ package com.chen.entiy;
 import javax.persistence.*;
 
 /**
- * Created by chen on 16-11-11.
+ * Created by chen on 16-11-16.
  */
 @Entity
 @Table(name = "book_user", schema = "book_store", catalog = "")
