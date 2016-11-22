@@ -1,5 +1,6 @@
 package com.chen.service;
 
+import com.chen.entiy.BookBooksEntity;
 import com.chen.entiy.BookUserEntity;
 import com.chen.filter.AuthFilter;
 import com.chen.repository.IRep.IBaseRepostitory;
@@ -9,6 +10,7 @@ import com.chen.repository.IRep.IUserPrepository;
 import com.chen.service.ISer.IUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -81,6 +83,11 @@ public class UserService implements IUserService {
         }
         //添加图书到购物车
         bookShopCatRepository.addBookToShopCat(bookid);
+    }
+
+    @Override
+    public void ShopCatDel(String bookid) {
+        this.bookShopCatRepository.delBookFromShopCat(bookid);
     }
 
     @Override

@@ -62,11 +62,16 @@ public class BookShopCatRepository extends BaseHibernateRepository<BookUserShopc
         int id=0;
         if(bookid!=null){id=Integer.parseInt(bookid);}
         if(id==0){return;}
-        BookUserShopcatEntity bookUserShopcatEntity=new BookUserShopcatEntity();
         BookUserEntity user= userPrepository.getUserInfo(AuthFilter.loginName);
-        bookUserShopcatEntity.setBookId(id);
-        bookUserShopcatEntity.setUserId(user.getId());
-        this.delete(bookUserShopcatEntity);
+        this.getHibernateTemplate().execute(new HibernateCallback<Integer>() {
+            @Override
+            public Integer doInHibernate(Session session) throws HibernateException {
+                return session.createQuery("delete BookUserShopcatEntity buse where userId=:uid and bookId=:bid ")
+                        .setParameter("uid",user.getId())
+                        .setParameter("bid",Integer.parseInt(bookid))
+                        .executeUpdate();
+            }
+        });
     }
 
     @Override

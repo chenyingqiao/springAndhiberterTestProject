@@ -44,5 +44,7 @@ public interface IUserService {
 
     void ShopCatAdd(String bookid);
 
+    void ShopCatDel(String bookid);
+
     float ShopCatClearing();
 }

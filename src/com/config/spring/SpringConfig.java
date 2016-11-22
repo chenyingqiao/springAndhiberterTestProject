@@ -21,7 +21,7 @@ public class SpringConfig {
     public BasicDataSource getDataSource(){
         BasicDataSource basicDataSource=new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        basicDataSource.setUrl("jdbc:mysql:///book_store");
+        basicDataSource.setUrl("jdbc:mysql:///book_store?useUnicode=true&characterEncoding=UTF-8");
         basicDataSource.setUsername("root");
         basicDataSource.setPassword("Cyq19931115");
         basicDataSource.setInitialSize(5);

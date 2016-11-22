@@ -45,7 +45,7 @@
                 <li class="list-group-item">
                     <img src="<c:url value='${item.face}'/>" width="200" height="300">
                     <span class="badge">库存量:${item.number}</span>
-                        ${item.name}
+                        <b>${item.name}</b>
                     <span>购买人数：${item.buyNumber}</span>
                     <span>价格：${item.price}</span>
                     <a href="/home/shopCatAdd?bookid=${item.id}" type="button" class="btn btn-primary">购买</a>

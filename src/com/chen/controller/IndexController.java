@@ -83,6 +83,7 @@ public class IndexController extends BaseController {
     public String shopCatDel(Model model,String bookid){
         model.addAttribute("msg","从购物车成功删除");
         model.addAttribute("url","/home/shopCat");
+        this.userService.ShopCatDel(bookid);
         return "success";
     }
 
